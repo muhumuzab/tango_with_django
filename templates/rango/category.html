@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block title %} {{ category_name }} {% endblock %}
+<!--<a href = "/rango/add_page/"><h2>Click here to Add new page</h2></a>-->
+{% block login %}{% endblock %}
+{% block Register %}{% endblock %}
+{% block body_block %}
+<div class = "peth">
+	<h1>{{ category_name }}</h1>
+
+	
+
+		{% if pages %}
+		<ul>
+			{% for page in pages %}
+			<li>
+			<a href = "/rango/goto/?page_id={{page.id}}">{{ page.title }}</a>
+			{% if page.views > 1 %}
+				-({{page.views}}views)
+			{% elif page.views == 1 %}
+				--({{page.views}}view)
+			{% endif %}
+			</li>
+			{% endfor %}
+		</ul>
+		{% else %}
+			<strong>No pages currently available</strong>
+		{% endif %}
+
+		{% if user.is_authenticated %}
+		<a href="/rango/category/{{ category_name_url }}/add_page/">Add pages</a>
+		{% endif %}
+
+		<p><b id ="like_count">{{category.likes}}</b> people like this category
+		{% if user.is_authenticated %}
+			<button id = "likes" data-catid="{{category.id}}" class = "btn btn-mini btn-primary" type ="button" value = "Submit">Like</button>
+		{% endif %}
+		</p>
+
+		<!--{% block sidebar %}
+				<div class = "well sidebar-nav">
+           			<div id = "cats">
+           				{% if categories %}
+           					<ul class = "nav nav-list"><li></li></ul>
+           					{% include 'category_list.html' %}
+           				{% endif %}
+           			</div>
+           		</div>
+         {% endblock %}-->
+</div>
+
+		<style type="text/css">
+			.peth{
+				margin-top: 300px;
+			}
+
+
+		</style>
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'base.html'%}
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Rango</title>
+	</head>
+
+	{% block body_block %}
+	<div class = "jumbotron">
+	<body>
+		
+		<h1>Register with Rango</h1>
+		<br/>
+		<div class = "container">
+		{% if registered %}
+		Rango says:<strong>thank you for registering</strong>
+		<p><a href = "/rango/login">Login </a>when you are ready to rango</p><br/>
+		{% else %}
+		Rango says:<strong>Register here !</strong><br/>
+
+		<!--<div class = "container">-->
+		<form id = "user_form" class = "form-signin" method = "post" action ="/rango/register/" enctype = "multipart/form-data">
+			{% csrf_token %}
+			<!--display each form in a paragraph,Ensures each element appears on a new line -->
+			<div class= "">
+			{% for field in user_form.visible_fields %}
+			{{ field.errors}}
+			{{ field.help_text }}<br/>
+			{{ field }}<br/>
+			{% endfor %}
+
+			{% for field in profile_form.visible_fields %}
+			{{ field.errors }}
+			{{ field.help_text }}<br/>
+			{{ field }}<br/>
+			{% endfor %}
+
+			<br/>
+
+
+			<!--{{ profile_form.as_p}}-->
+			</div>
+
+			<!--provide a button to click inorder to submit the form-->
+			<input type = "submit" class = "btn btn-primary" name = "submit" value = "Register"/>
+		</form>
+		{% endif %}
+		</div>
+		</div>
+
+	</body>
+	</div>
+	{% endblock %}
+</html>
+
+

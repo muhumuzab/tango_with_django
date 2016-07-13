@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block body_block %}
+
+
+<div class = "container">
+<p>You searched for: <strong>{{query}}</strong></p>
+
+{% if categorys %}
+	<p>You searched for: <strong>{{query}}</strong></p>
+	<p>Found {{ categorys|length }} category{{categorys|pluralize}}.</p>
+	<div class = "brn">
+	
+	<ul>
+		{% for category in categorys %}
+		<li class = "list-group-item"><a href = "/rango/category/{{ category.url}}">{{category.name}}</a></li>
+		{% endfor %}
+	</ul>
+	</div>
+{% else %}
+	<p>No categories matched your search criteria</p>
+{% endif %}
+
+<style type="text/css">
+	.brn{
+		margin-bottom: 300px;
+	}
+</style>
+</div>
+{% endblock %}
+
+
+

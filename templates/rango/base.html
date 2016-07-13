@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+
+{% load static %}
+<html>
+	<head>
+		<title>Rango - {% block title %}{% endblock %}</title>
+		<meta charset="utf-8">
+    	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+    	<link href="{% static 'css/bootstrap-fluid-adj.css' %}" rel="stylesheet">
+    	<script src ="{%static "js/jquery.min.js" %}"></script>
+    	<script src ="{%static "js/rangoajax.js" %}"></script>
+
+      <!-- jquery autocomplete  files-->
+      <script src ="{%static "js/autocomplete.js" %}"></script>
+      <script src ="{%static "js/autocomplete.css" %}"></script>
+
+      <script src ="{%static "js/jquery.dimensions.js" %}"></script>
+      <script src ="{%static "js/jquery.dimensions.min.js" %}"></script>
+
+
+      <link rel="stylesheet" href= "{%static "js/css/jquery-ui.min.css" %}" type="text/css" media="all"/>
+      <!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" type="text/javascript">-->
+      <script src=" {%static "js/js/jquery-ui.min.js" %}" type="text/javascript"></script>
+
+		{% load bootstrap3 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+	</head>
+
+<body>
+	<div class="navbar navbar-inverse navbar-fixed-top">
+   		<div class="container">
+       		<div class="navbar-header">
+           		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-collapse">
+               		<span class="icon-bar"></span>
+               		<span class="icon-bar"></span>
+               		<span class="icon-bar"></span>
+           		</button>
+           		<a class="brand" href="/rango/">Rango</a>
+
+           		<div class=" collapse navbar-collapse " id = "nav-collapse">
+           		<!--<a href = "#" class =  "btn btn-info navbar-btn navbar-right">-->
+               		<ul class="nav navbar-nav">
+                   		{% if user.is_authenticated %}
+                    	<li class="navbar-text">Welcome, {{ user.username }}!</li>
+                    	<li><a href="/rango/profile/">Profile</a></li>
+                    	<li><a href="/rango/user_logout/">Logout</a></li>
+                   		{% else %}
+                    	<li><a href="/rango/register/">Register</a></li>
+                    	<li><a href="/rango/login/">Login</a></li>
+                   		{% endif %}
+               		</ul>
+
+               		<ul class= "nav">
+                   		{% if user.is_authenticated %}
+                    	<li><a href="/rango/restricted/">Restricted</a></li>
+                    	<li><a href="/rango/add_category/">Add Category</a></li>
+                   		{% endif %}
+                   		<li><a href="/rango/about/">About</a></li>
+                   		<li><a href="/rango/search/">Search</a></li>
+               		</ul>
+
+						<!--<form  class = "form-inline" method = "get" action="">-->
+                  
+                  {% csrf_token %}
+                  <!--<div>
+                  <label for = "catSearchField">Cat:</label>
+                  <input type="text"  name = "catSearchField" class = "form-control" id = "catSearchField" value = ""/>
+                  </div>-->
+        					<!--<input class ="btn btn-sm btn-info" type="submit"/>-->
+
+    				<!--</form>-->
+           		</div>
+
+
+           		</div>
+              <!--<form id = "aa" class = "form-inline" method = "get" action="/rango/CategoryAutocomplete/"> rango/searchh
+
+                  <input type="text"  class = "form-control" name="q" value = "{{qs}}"/>
+                  <input class ="btn btn-sm btn-info" type="submit"
+
+              </form>-->
+
+
+
+           <!--/.nav-collapse -->
+       		</div>
+   		</div>
+	</div>
+
+
+	<div class =  "container-fluid">
+				<div class = "well sidebar-nav">
+						<!--empty for the time being-->
+				</div>
+					<!--well-->
+	
+				<!--span-->
+			
+				<div class = "welll">
+					{% block body_block %}
+
+          {% block side_bar %}
+          {% endblock %}
+
+          {{ form.media }}
+					{% endblock %}
+				</div>
+	</div>
+	
+
+		
+			<!--span-->
+
+		<!--row-->
+
+	<!--fluid container-->
+
+	<footer class = "foot">
+		<div class = "container">
+			<p>&copy;Rango:How to Tango with Django 2016</p>
+		</div>
+	</footer>
+	<style type="text/css">
+		.welll{
+			margin-top: 50px;
+		}
+		.nav{
+			float:left;
+			/*inline-block;*/
+		}
+		#catSearchField{
+			/*margin-left: 800px;*/
+		}
+		.tut{
+			float:right;
+		}
+		#cats{
+			margin-left: 1100px;
+		}
+		.foot{
+			float:left;
+		}
+
+	</style>
+
+  <script type = "text/javascript">
+  /*$(document).ready(function(){
+
+    $(function() {
+      $("#cat").autocomplete({          
+      source: "/rango/get_cat/",
+      minLength:2,
+      });
+    });
+  });*/
+  $(function(){
+    setAutoComplete("catSearchField", "model_results", "/rango/lookup/?query=");
+  });
+
+  </script>
+</body>
+</html>

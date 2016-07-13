@@ -1,0 +1,230 @@
+<!doctype html>
+
+<html>
+<head>
+    <meta charset = "UTF-8">
+    
+    <script src = "C:\Users\BRIN\Desktop\Jquery\jquery.min.js"></script>
+    
+    <link rel = "stylesheet" href = "css/jquery-ui.min.css" style type = "text/css">
+    
+    <script src = "js/jquery-ui.min.js"></script>
+</head>
+
+
+<style type = "text/css">
+    
+    .highlight{background-color:yellow;
+        }
+    
+    #wrapper {
+        width:800px;
+        margin:auto;
+        }
+        
+    .ui-menu {
+        width:15em;
+        }
+        
+    #cartDiv {
+        border-style:solid;
+        border-width:5px;
+        }
+    #shMenu {
+        display:flex;
+        justify-content:space-between;
+
+        
+        }
+    body {
+    background-color:#F3F3F3;
+    }
+    
+</style>
+    
+    
+    
+<body>
+    
+<div id = "wrapper">
+
+    <ul id = "shMenu">
+        <li><a href = "Javascript:void(0)">Super Heroes</a>
+            <ul>
+                <li><a href = "Javascript:void(0)">Hulk</a></li>
+                <li><a href = "Javascript:void(0)">Batman</a></li>
+                <li><a href = "Javascript:void(0)">Spider-Man</a></li>
+                </li><a href = "Javascript:void(0)">Thor</a></li>
+            </ul>
+        </li>
+        
+        <li><a href = "Javascript:void(0)">Comic Books</a>
+            <ul>
+                <li><a href = "Javascript:void(0)">Hulk</a></li>
+                <li><a href = "Javascript:void(0)">Batman</a></li>
+                <li><a href = "Javascript:void(0)">Spider-Man</a></li>
+                <li><a href = "Javascript:void(0)">Thor</a></li>
+            </ul>
+        </li>
+    </ul><br/>  
+    
+    
+    
+    <div id = "accordion">
+    <h3>Batman</h3>
+    <div>
+    A young Bruce Wayne (Christian Bale) travels to the Far East,
+    where he's trained in the martial arts by Henri Ducard (Liam Neeson),
+    a member of the mysterious League of Shadows. When Ducard reveals the League's true purpose
+    -- the complete destruction of Gotham City -- Wayne returns to Gotham intent on cleaning up the city without resorting to murder.
+    With the help of Alfred (Michael Caine), his loyal butler, and Lucius Fox (Morgan Freeman),
+    a tech expert at Wayne Enterprises, Batman is born.
+    </div>
+    
+    
+    <h3>Thor</h3>
+    <div>
+    As the son of Odin (Anthony Hopkins), king of the Norse gods,
+    Thor (Chris Hemsworth) will soon inherit the throne of Asgard from his aging
+    father. However, on the day that he is to be crowned, Thor reacts with brutality when the gods' enemies,
+    the Frost Giants, enter the palace in violation of their treaty. As punishment, Odin banishes Thor to Earth. While Loki (Tom Hiddleston),
+    Thor's brother, plots mischief in Asgard,
+    Thor, now stripped of his powers, faces his greatest threat..
+    </div>
+    
+    
+    <h3>SpiderMan</h3>
+    <div>
+    "Spider-Man" centers on student Peter Parker (Tobey Maguire) who, 
+    after being bitten by a genetically-altered spider, gains superhuman
+    strength and the spider-like ability to cling to any surface. He vows
+    to use his abilities to fight crime, coming to understand the words of his
+    beloved Uncle Ben:
+    "With great power comes great responsibility."
+    </div>
+    </div>
+    
+    
+    <div id = "shTabs">
+    <ul>
+        <li><a href = "#ironman">Ironman</a></li>
+        <li><a href = "#hulk">Hulk</a></li>
+        <li><a href = "#thor">thor</a></li>
+        <li><a href = "#spiderman">SpiderMan</a></li>
+    </ul>
+
+    
+    <div id = "ironman">
+    A billionaire industrialist and genius inventor, Tony Stark (Robert Downey Jr.),
+    is conducting weapons tests overseas, but terrorists kidnap him to force him to build a devastating 
+    weapon. Instead, he builds an armored suit and upends his captors. Returning to America,
+    Stark refines the suit and uses it to combat crime and terrorism.
+        
+    </div>
+    
+    <div id = "hulk">
+    Eric Bana ("Black Hawk Down") stars as scientist Bruce Banner, 
+    whose inner demons transform him in the aftermath of a catastrophic experiment;
+    Jennifer Connelly portrays Betty Ross, whose scientific genius unwittingly helps unleash the Hulk; 
+    Nick Nolte plays Banner's brilliant father, who passes on a tragic legacy to his son; and Sam Elliott
+    portrays the commander of a top-secret military research center.
+        
+    </div>
+    
+    <div id = "thor">
+    As the son of Odin (Anthony Hopkins), king of the Norse gods,
+    Thor (Chris Hemsworth) will soon inherit the throne of Asgard from his aging
+    father. However, on the day that he is to be crowned, Thor reacts with brutality when the gods' enemies,
+    the Frost Giants, enter the palace in violation of their treaty. As punishment, Odin banishes Thor to Earth. While Loki (Tom Hiddleston),
+    Thor's brother, plots mischief in Asgard,
+    Thor, now stripped of his powers, faces his greatest threat..
+        
+    </div>
+    
+    <div id = "spiderman">
+    "Spider-Man" centers on student Peter Parker (Tobey Maguire) who, 
+    after being bitten by a genetically-altered spider, gains superhuman
+    strength and the spider-like ability to cling to any surface. He vows
+    to use his abilities to fight crime, coming to understand the words of his
+    beloved Uncle Ben:
+    "With great power comes great responsibility." 
+    </div>
+    <div></br>
+    
+    <div id = "customDialog" title = "custom Dialog">
+    <p>A random dialog box that contains important information</p>
+    </div>
+    
+    <a href = "Javascript:void(0)" id = "openDialog" title = "Open Dialog Box">Open Dialog</a><br/><br/>
+    
+    
+    
+<script type = "text/javascript">
+    
+$('document').ready(function() {
+    $("#shMenu").menu({
+        position: {
+            my: "center top",
+            at: "center bottom"
+        }
+        
+    });
+    
+    $("#accordion").accordion({
+        animate:1500,
+        active:1,
+        collapsible:true,
+        event:"click",
+        heightStyle:"content"
+    });
+    
+    $("#shTabs").tabs({
+        event:"click",
+        show:"fadeIn",
+        hide:"fadeOut",
+        active:3,
+        collapsible:true,
+        heightStyle:"content"
+    });
+    
+    $("#customDialog").dialog({
+        draggable:true,
+        resizable:false;
+        height:300,
+        width:300,
+        modal:true,
+        position: {
+            my: 'center top',
+            at: 'center bottom',
+            of: "#openDialog"
+        },
+        show:1000,
+        hide:1000,
+        autoOpen:false,
+        buttons: {
+            "OK":function(){
+              $("#openDialog").html("you clicked Ok");
+              $(this).dialog("close");
+            },
+            "CANCEL":function(){
+              $("#openDialog").html("You clicked cancel");
+              $(this).dialog("close");
+            
+            }
+        }
+    });
+      
+    $("#openDialog").click(function(){
+      $("#customDialog").dialog("open");
+    });
+        
+ 
+});
+    
+</script>
+    
+</div>
+
+
+</body>
+</html>

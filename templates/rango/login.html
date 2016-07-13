@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+<!doctype html>
+
+<html>
+	<head>
+		<title>Rango</title>
+	</head>
+
+	
+	{% block body_block %}
+	<div align = "center">
+	<div class = "jumbotron">
+	<body>
+		<h1>Login to Rango</h1>
+			<div class ="container">
+				
+				<form class = "form-inline" id = "login_form" method = "post" action = "/rango/login/">
+					<div class = "form-group">
+					<h2 class = "form-signin-heading">Please sign in</h2>
+					{% csrf_token %}
+					Username: <input type = "text" class = "form-control" name = "username" value="" size="50"/><hr>
+					Password: <input type = "password" class = "form-control" name = "password" value="" size="50"/>
+					<br/>
+					<button class ="btn btn-primary" type = "submit">Sign in</button>
+					</div>
+				</form>
+				
+			</div>
+	</body>
+	</div>
+	<style type="text/css">
+		.jumbotron{
+			margin:0 auto;
+			width:50%;
+		}
+		.jumbotron{
+			margin:0 auto;
+			width:50%;
+		}
+
+	</style>
+	{% endblock %}
+	</div>
+</div>
+
+</html>

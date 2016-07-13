@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+<html>
+
+<!--<div align = "center">-->
+<!--<h1 align = "center">Hello world</h1>-->
+	<head>
+		<title>{% block title %}Home{% endblock %}</title>
+	</head>
+
+	<!--{% block home %}{% endblock %}-->
+
+	<body>
+		{% block body_block %}
+		<div class = "jumbotron" text-align = "center">
+			<h1 align = "center">Ready to Rango</h1>
+			<p align = "center">Find,Add,Share, and Rango useful links and resources</p>
+		</div>
+		<div class = "hero-unit">
+		{% if user.is_authenticated %}
+		<h1 align = "center">Rango says..hello {{ user.username}}!</h1>
+		{% else %}
+		<h1 align  = "center">Rango says..hello world</h1>
+		{% endif %}
+		</div>
+
+
+	
+	<div class = "container">
+		<div class = "jumbotron">
+
+		<div class = "row">
+
+			<div class = "col-lg-4">
+			<form  method = "get" action = "/rango/searchh/">
+			<label for = "catSearchField">Search Categories:</label>
+        	<input type="text"  name = "q" class = "form-control" id = "catSearchField" value = ""/  value = "{{query}}">
+        	<!--<input type="text"  class = "form-control" name="q" value = "{{qs}}"/>-->
+            <input class ="btn btn-sm btn-info" type="submit"/>
+        	</form>
+    		</div>
+			
+			<div class = "col-lg-4">
+			<h2>Top five Categories</h2>
+			{% if categories %}
+				<ul>
+					{% for category in categories %}
+				<!--following line changed to add  link to category url and view-->
+					<li><a href ="/rango/category/{{ category.url}}">{{category.name}}</a></li>
+					{% endfor %}
+				</ul>
+			{% else %}
+			<strong>There are no categories present</strong>
+			{% endif %}
+			</div>
+
+		<!--span-->
+		<br>
+
+		<div class = "col-lg-4">
+
+			<h4>Top five pages</h4>
+			{% if pages %}
+				<ul>
+					{% for page in pages %}
+					<li><a href = "{{page.url}}">{{ page.title }}</a> - {{page.category}} ({{page.views}} view(s))</li>
+					{% endfor %}
+				</ul>
+			{% endif %}
+		</div>
+		</div>
+	</div>
+
+
+		<a href = "/rango/about/">About</a></br/>
+		<img src = "{% static "Rango.jpg" %}" alt = "picture of rango"/>
+	</div>
+	{% block side_bar %}
+
+		<div class = "well sidebar-nav">
+           	<ul class = "nav nav-list">
+
+           		<li class = "nav-header">Find a Category !</li>
+           		<form>
+           		<label></label>
+           		<li><input class = "search-query" type = "text" name ="suggestion" value ="" id = "suggestion"/><li>
+           		</form>
+           	</ul>
+
+           	<div class = "gu">
+        {% if cat_list %}
+           		<div id = "cats">
+           			{% include 'category_list.html' %}
+           		</div>
+        {% endif %}
+           </div>
+        </div>
+
+        <style type="text/css">
+        	.gu{
+        		margin-top: 100px;
+        		margin-right: 700px;
+        		
+        	}
+        </style>
+    {% endblock %}
+
+	<!--{% block sidebar %}
+	{% endblock %}-->
+
+	{% endblock %}
+	</body>
+</html>
+</div>
+
+
+
+

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+<!doctype html>
+<html>
+	<head>
+		<title>Rango</title>
+	</head>
+
+	<body>
+		{% block body_block %}
+		<div class = "jumbotron">
+			<h1>Add a Category</h1>
+			<div class = "container">
+			<form id = "category_form" method = "post" class = "form-control" action = "/rango/add_category/">
+
+				{% csrf_token %}
+				{% for hidden in form.hidden_fields %}
+					{{ hidden}}
+				{% endfor %}
+
+				<div class = "pan">
+				{% for field in form.visible_fields %}
+					{{ field.errors }}
+					{{ field.help_text }}
+					{{ field }}
+				{% endfor %}
+				</div>
+				<button  type = "submit" name ="submit" class = "btn btn-primary" >Create Category</button>
+			</form>
+			</div>
+		</div>
+		{% endblock %}
+		<style type="text/css">
+			.pan{
+				padding-top: 90px;
+			}
+		</style>
+	</body>
+</html>

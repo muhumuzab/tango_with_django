@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+<html>
+<head>
+	<title>Rango</title>
+</head>
+<!--<a href = "/rango/add_page/"><h2>Click here to Add new page</h2></a>-->
+<a href="/rango/category/{{ category_name_url }}/add_page/">Add pages</a>
+<body>
+	<h1>{{ category_name }}</h1>
+	{% if category %}
+		{% if pages %}
+		<ul>
+			{% for page in pages %}
+			<li><a href = "{{page.url}}">{{ page.title }}</a></li>
+			{% endfor %}
+		</ul>
+		{% else %}
+			<strong>No pages currently available</strong>
+		{% endif %}
+	{% else %}
+	The specified category {{ category_name }} does not Exist !
+	{% endif %}
+</body>
+</html>

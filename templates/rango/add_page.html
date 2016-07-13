@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+{% block body_block %}
+<div class = "bod">
+<html>
+	<head>
+		<title>Add Page</title>
+	<head>
+
+	<body>
+		<h1>Add Page</h1><br/>
+
+		<form id = "Page-form" method = "POST" class = "form-signin" action = "/rango/category/{{category_name_url}}/add_page/">
+			{% csrf_token %}
+
+			{% for hidden in form.hidden_fields %}
+				{{hidden}}
+			{% endfor %}
+
+			{% for field in form.visible_fields %}
+				{{field.errors}}
+				{{field.help_text}}
+				{{field}}
+			{% endfor %}
+
+			<button class = "btn btn-primary" type = "submit" name = "submit">Create Page</button>
+		</form>
+
+		<style>
+			.bod{
+				margin-top:160px;
+			}
+	</body>
+
+</html>
+</div>
+{% endblock %}

@@ -1,0 +1,29 @@
+<body>
+<ul class = "nav nav-list">
+	<div class = "du">
+	{% if cat_list %}
+		{% for cat in cat_list %}
+			<li><a href = "/rango/category/{{cat.url}}">{{cat.name}}</a></li>
+		{% endfor %}
+	{% else %}
+		<li>No categories at present.<li>
+	{% endif %}
+	</div>
+</ul>
+<style type="text/css">
+	.du{
+		margin-right: 1200px;
+	}
+</style>
+</body>
+<!--<ul class = "nav nav-list">
+	<li class = "nav-header">Other categories</li>
+	{% if categories %}
+		{% for category in categories %}
+			<li><a href = "/rango/category/{{category.url}}">{{category.name}}</a></li>
+		{% endfor %}
+	{% else %}
+		<li>No categories at present</li>
+	{% endif %}
+	<li><a href = "/rango/add_category/">Add Category</a></li>
+</ul>-->
